@@ -16,14 +16,14 @@ class SplashScreen extends ConsumerWidget {
           // Navigasi berdasarkan token
           final token = ref.read(splashProvider.notifier).token;
           if (token != null && token.isNotEmpty) {
-            Next.to(context, BottomNavBar());
+            Next.to(context, const BottomNavBar());
           } else {
-            Next.to(context, Login());
+            Next.to(context, const Login());
           }
         } catch (e, stackTrace) {
           print('Stack trace: $stackTrace');
           try {
-            Next.to(context, Login());
+            Next.to(context, const Login());
           } catch (fallbackError) {
             print('Error fallback: $fallbackError');
           }
@@ -36,7 +36,7 @@ class SplashScreen extends ConsumerWidget {
         child: Container(
           width: double.infinity,
           height: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage("assets/images/splash.png"),
               fit: BoxFit.cover,

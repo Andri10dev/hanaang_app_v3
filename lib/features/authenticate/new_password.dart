@@ -20,15 +20,15 @@ class NewPassword extends ConsumerWidget {
     final form = ref.read(formProvider.notifier);
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: CustomBgAppBar(),
+        flexibleSpace: const CustomBgAppBar(),
         centerTitle: true,
-        title: TextH2(
+        title: const TextH2(
           text: "Buat Password Baru",
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             color: Colors.white,
           ),
@@ -52,7 +52,7 @@ class NewPassword extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              Align(
+              const Align(
                 alignment: Alignment.centerLeft,
                 child: TextH1(
                   text: "Buat Password Baru",
@@ -60,15 +60,15 @@ class NewPassword extends ConsumerWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              TextNormal(
+              const TextNormal(
                 text:
                     "Untuk keamanan maksimal, kata sandi baru Anda tidak boleh sama dengan yang pernah digunakan sebelumnya. Ciptakan kata sandi baru yang unik dan siap menjaga akun Anda! ",
                 textAlign: TextAlign.justify,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               InputDefault(
@@ -87,7 +87,7 @@ class NewPassword extends ConsumerWidget {
                 isPassword: true,
                 onChanged: form.updatePassword,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               ElevatedButton(

@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:hanaang_app/components/customs/bg_appbar.dart';
 import 'package:hanaang_app/components/texts/h2.dart';
 import 'package:hanaang_app/components/texts/h3.dart';
 import 'package:hanaang_app/components/texts/normal.dart';
+import 'package:mrx_charts/mrx_charts.dart';
 
 class StoreDetail extends StatelessWidget {
   const StoreDetail({super.key});
@@ -11,15 +14,15 @@ class StoreDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: CustomBgAppBar(),
-        title: TextH2(
+        flexibleSpace: const CustomBgAppBar(),
+        title: const TextH2(
           text: 'Detail Warung',
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             color: Colors.white,
           ),
@@ -34,15 +37,15 @@ class StoreDetail extends StatelessWidget {
               Container(
                 width: 30,
                 height: 30,
-                margin: EdgeInsets.symmetric(horizontal: 4),
-                decoration: BoxDecoration(
+                margin: const EdgeInsets.symmetric(horizontal: 4),
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   shape: BoxShape.circle,
                 ),
                 child: IconButton(
                   padding: EdgeInsets.zero,
                   onPressed: () {},
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.edit,
                     color: Colors.amber,
                     size: 20,
@@ -52,8 +55,8 @@ class StoreDetail extends StatelessWidget {
               Container(
                 width: 30,
                 height: 30,
-                margin: EdgeInsets.only(left: 4, right: 10),
-                decoration: BoxDecoration(
+                margin: const EdgeInsets.only(left: 4, right: 10),
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   shape: BoxShape.circle,
                 ),
@@ -64,7 +67,7 @@ class StoreDetail extends StatelessWidget {
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-                          title: TextH2(
+                          title: const TextH2(
                             text: 'Konfirmasi Hapus',
                             fontWeight: FontWeight.bold,
                             textAlign: TextAlign.center,
@@ -77,8 +80,8 @@ class StoreDetail extends StatelessWidget {
                                 height: 100,
                                 width: 100,
                               ),
-                              SizedBox(height: 16),
-                              TextNormal(
+                              const SizedBox(height: 16),
+                              const TextNormal(
                                 text:
                                     'Apakah Anda yakin ingin menghapus data warung ini?',
                                 textAlign: TextAlign.center,
@@ -98,7 +101,7 @@ class StoreDetail extends StatelessWidget {
                                 onPressed: () {
                                   Navigator.of(context).pop(); // Menutup dialog
                                 },
-                                child: TextNormal(
+                                child: const TextNormal(
                                   text: 'Batal',
                                   color: Colors.red,
                                 ),
@@ -115,7 +118,7 @@ class StoreDetail extends StatelessWidget {
                                   // Tambahkan logika hapus data di sini
                                   Navigator.of(context).pop(); // Menutup dialog
                                 },
-                                child: TextNormal(
+                                child: const TextNormal(
                                   text: 'Hapus',
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
@@ -127,7 +130,7 @@ class StoreDetail extends StatelessWidget {
                       },
                     );
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.delete,
                     color: Colors.red,
                     size: 20,
@@ -148,15 +151,15 @@ class StoreDetail extends StatelessWidget {
                 color: Colors.yellow.shade200,
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Container(
               width: double.infinity,
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: double.infinity,
                     child: TextH2(
                       text: "Nama Warung",
@@ -164,79 +167,128 @@ class StoreDetail extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: double.infinity,
                     child: TextH3(
                         text: "Nama Pemilik",
                         fontWeight: FontWeight.bold,
                         textAlign: TextAlign.center),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: double.infinity,
                     child: TextH3(
                         text: "Id Warung",
                         fontWeight: FontWeight.bold,
                         textAlign: TextAlign.center),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  TextH2(
+                  const TextH2(
                       text: "Alamat",
                       fontWeight: FontWeight.bold,
                       textAlign: TextAlign.center),
                   Container(
-                    margin: EdgeInsets.only(bottom: 10),
+                    margin: const EdgeInsets.only(bottom: 10),
                     width: double.infinity,
                     height: 2,
                     color: Colors.black,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       TextNormal(text: "Provinsi"),
                       TextNormal(text: "Jawa Barat"),
                     ],
                   ),
-                  SizedBox(height: 5),
-                  Row(
+                  const SizedBox(height: 5),
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       TextNormal(text: "Kabupaten / Kota"),
                       TextNormal(text: "Bandung"),
                     ],
                   ),
-                  SizedBox(height: 5),
-                  Row(
+                  const SizedBox(height: 5),
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       TextNormal(text: "Kecamatan"),
                       TextNormal(text: "Bandung"),
                     ],
                   ),
-                  SizedBox(height: 5),
-                  Row(
+                  const SizedBox(height: 5),
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       TextNormal(text: "Desa / Kelurahan"),
                       TextNormal(text: "Bandung"),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  TextH2(text: "Detail Alamat", fontWeight: FontWeight.bold),
+                  const TextH2(
+                      text: "Detail Alamat", fontWeight: FontWeight.bold),
                   Container(
-                    margin: EdgeInsets.only(bottom: 10),
+                    margin: const EdgeInsets.only(bottom: 10),
                     width: double.infinity,
                     height: 2,
                     color: Colors.black,
                   ),
-                  TextNormal(
+                  const TextNormal(
                     text:
                         "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.",
                     textAlign: TextAlign.justify,
-                  )
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  TextH2(
+                      text: "Grafik Penjualan / Tahun",
+                      fontWeight: FontWeight.bold),
+                  Container(
+                    height: 300,
+                    padding: const EdgeInsets.all(16),
+                    child: Chart(layers: [
+                      ChartAxisLayer(
+                        settings: const ChartAxisSettings(
+                          x: ChartAxisSettingsAxis(
+                            frequency: 1.0,
+                            max: 12,
+                            min: 1,
+                            textStyle: TextStyle(
+                              color: Colors.black,
+                              fontSize: 10.0,
+                            ),
+                          ),
+                          y: ChartAxisSettingsAxis(
+                            frequency: 100,
+                            max: 500,
+                            min: 0,
+                            textStyle: TextStyle(
+                              color: Colors.black,
+                              fontSize: 10.0,
+                            ),
+                          ),
+                        ),
+                        labelX: (value) => value.toInt().toString(),
+                        labelY: (value) => value.toInt().toString(),
+                      ),
+                      ChartLineLayer(
+                        items: List.generate(
+                            12,
+                            (index) => ChartLineDataItem(
+                                  value: Random().nextInt(500) + 20,
+                                  x: index.toDouble() + 1,
+                                )),
+                        settings: const ChartLineSettings(
+                          color: Colors.green,
+                          thickness: 2,
+                        ),
+                      ),
+                    ]),
+                  ),
                 ],
               ),
             )

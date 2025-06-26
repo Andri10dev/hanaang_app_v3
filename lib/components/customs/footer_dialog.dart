@@ -8,9 +8,9 @@ class FooterDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: myColors.yellow,
-        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(20)),
+        borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
       ),
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: const Center(

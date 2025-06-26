@@ -20,15 +20,15 @@ class ForgotPassword extends ConsumerWidget {
     final form = ref.read(formProvider.notifier);
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: CustomBgAppBar(),
+        flexibleSpace: const CustomBgAppBar(),
         centerTitle: true,
-        title: TextH2(
+        title: const TextH2(
           text: "Lupa Password",
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             color: Colors.white,
           ),
@@ -52,7 +52,7 @@ class ForgotPassword extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              Align(
+              const Align(
                 alignment: Alignment.centerLeft,
                 child: TextH1(
                   text: "Lupa Password",
@@ -60,15 +60,15 @@ class ForgotPassword extends ConsumerWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              TextNormal(
+              const TextNormal(
                 text:
                     "Jangan khawatir..!, Silahkan masukan alamat email yang tertaut dengan akun Anda..!",
                 textAlign: TextAlign.justify,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               InputDefault(
@@ -80,7 +80,7 @@ class ForgotPassword extends ConsumerWidget {
                 keyboardType: TextInputType.text,
                 onChanged: form.updateEmail,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               ElevatedButton(

@@ -1,64 +1,32 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hanaang_app/components/customs/bg_appbar.dart';
 import 'package:hanaang_app/components/texts/h1.dart';
 import 'package:hanaang_app/components/texts/h2.dart';
 import 'package:hanaang_app/components/texts/h3.dart';
+import 'package:hanaang_app/components/texts/normal.dart';
+import 'package:hanaang_app/features/account/logout_state/void_show_dialog.dart';
 import 'package:hanaang_app/features/account/show_qr_code.dart';
-import 'package:hanaang_app/providers/auths/auth_provider.dart';
 import 'package:hanaang_app/providers/auths/local_storage_provider.dart';
 import 'package:hanaang_app/utilities/custom_color.dart';
 
-class Account extends ConsumerStatefulWidget {
+class Account extends ConsumerWidget {
   const Account({super.key});
 
   @override
-  ConsumerState<Account> createState() => _AccountState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final image = ref.watch(getImageProvider).toString();
+    final name = ref.watch(getNameProvider).toString();
+    final email = ref.watch(getEmailProvider).toString();
+    final phoneNumber = ref.watch(getPhoneNumberProvider).toString();
+    final userRole = ref.watch(getUserRoleProvider).toString();
+    final id = ref.watch(getUniqueIdProvider).toString();
 
-class _AccountState extends ConsumerState<Account> {
-  String? image;
-  String? name;
-  String? email;
-  String? phoneNumber;
-  String? userRole;
-  String? id;
-  bool loading = false;
-
-  Future<void> _loadStorage() async {
-    final localStorage = ref.read(localStorageProvider);
-    final getImage = await localStorage.getString('image-hanaang_app');
-    final getName = await localStorage.getString('name-hanaang_app');
-    final getEmail = await localStorage.getString('email-hanaang_app');
-    final getPhoneNumber =
-        await localStorage.getString('phone_number-hanaang_app');
-    final getUserRole = await localStorage.getString('user_role-hanaang_app');
-    final getId = await localStorage.getString('unique_id-hanaang_app');
-    setState(() {
-      image = getImage;
-      name = getName;
-      email = getEmail;
-      phoneNumber = getPhoneNumber;
-      userRole = getUserRole;
-      id = getId;
-    });
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    _loadStorage();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: CustomBgAppBar(),
+        flexibleSpace: const CustomBgAppBar(),
         centerTitle: true,
-        title: TextH1(
+        title: const TextH1(
           text: "Akun",
           fontWeight: FontWeight.bold,
           color: Colors.white,
@@ -66,18 +34,25 @@ class _AccountState extends ConsumerState<Account> {
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.qr_code_scanner,
               color: Colors.white,
             ),
             onPressed: () {
-              ShowQRCodeAccount(context, id.toString(), name.toString());
+              ShowQRCodeAccount(context, id.toString(), name);
             },
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
+      body: RefreshIndicator(
+        onRefresh: () async {
+          ref.invalidate(getEmailProvider);
+          ref.invalidate(getNameProvider);
+          ref.invalidate(getPhoneNumberProvider);
+          ref.invalidate(getUserRoleProvider);
+          ref.invalidate(getUniqueIdProvider);
+        },
+        child: ListView(
           children: [
             Stack(
               children: [
@@ -93,7 +68,7 @@ class _AccountState extends ConsumerState<Account> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.only(top: 15),
+                  padding: const EdgeInsets.only(top: 15),
                   height: 200,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -109,12 +84,12 @@ class _AccountState extends ConsumerState<Account> {
                                   color: Colors.black.withOpacity(0.3)),
                               borderRadius: BorderRadius.circular(100)),
                           child: ClipOval(
-                              child: image != null
+                              child: image.isNotEmpty
                                   ? Image.asset(
                                       'assets/images/logo_hanaang.png',
                                       fit: BoxFit.cover,
                                     )
-                                  : Icon(Icons.person,
+                                  : const Icon(Icons.person,
                                       color: Colors.white, size: 60)),
                         ),
                       ),
@@ -124,36 +99,40 @@ class _AccountState extends ConsumerState<Account> {
               ],
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               child: Column(
                 children: [
                   TextH1(
-                    text: name.toString(),
+                    text: name,
                     fontWeight: FontWeight.bold,
                   ),
                   TextH3(
-                    text: email.toString(),
+                    text: email,
                     fontWeight: FontWeight.w500,
                   ),
-                  TextH3(text: "${phoneNumber ?? "-"}"),
+                  TextH3(
+                    text: userRole,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  TextH3(text: "${phoneNumber ?? '-'}"),
                   TextH2(
-                    text: id.toString(),
+                    text: id,
                     fontWeight: FontWeight.w500,
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 5),
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.green,
-                        minimumSize: Size(double.infinity, 50),
-                        maximumSize: Size(double.infinity, 50),
+                        minimumSize: const Size(double.infinity, 50),
+                        maximumSize: const Size(double.infinity, 50),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
-                      child: Row(
+                      child: const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           TextH3(
@@ -186,14 +165,10 @@ class _AccountState extends ConsumerState<Account> {
                     "Pengaturan Akun",
                     () {},
                   ),
-                  SizedBox(height: 30),
-
-                  // Tombol Logout
+                  const SizedBox(height: 30),
                   ElevatedButton(
                     onPressed: () {
-                      ref
-                          .read(authStateProvider.notifier)
-                          .handleLogout(context);
+                      showLogoutConfirmation(context, ref);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red,
@@ -202,7 +177,7 @@ class _AccountState extends ConsumerState<Account> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    child: Row(
+                    child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
@@ -240,8 +215,8 @@ class _AccountState extends ConsumerState<Account> {
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: myColors.yellow,
-          minimumSize: Size(double.infinity, 50),
-          maximumSize: Size(double.infinity, 50),
+          minimumSize: const Size(double.infinity, 50),
+          maximumSize: const Size(double.infinity, 50),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
@@ -249,12 +224,12 @@ class _AccountState extends ConsumerState<Account> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            TextH3(
+            TextNormal(
               text: name,
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
-            Icon(
+            const Icon(
               Icons.play_arrow_rounded,
               color: Colors.white,
             )

@@ -14,10 +14,19 @@ class TextSm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    double getResponsiveFontSize(double screenWidth) {
+      if (screenWidth >= 412) return 16; // tablet
+      if (screenWidth >= 390) return 14; // tablet
+      if (screenWidth >= 360) return 12; // besar
+      if (screenWidth >= 320) return 10; // sedang
+      return 10; // kecil
+    }
+
     return Text(
       text,
       style: TextStyle(
-        fontSize: 14,
+        fontSize: getResponsiveFontSize(screenWidth),
         color: color,
         fontWeight: fontWeight,
       ),

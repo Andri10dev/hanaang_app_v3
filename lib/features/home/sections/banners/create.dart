@@ -5,7 +5,6 @@ import 'package:hanaang_app/components/customs/bg_appbar.dart';
 import 'package:hanaang_app/components/forms/input_default.dart';
 import 'package:hanaang_app/components/texts/h2.dart';
 import 'package:hanaang_app/components/texts/normal.dart';
-import 'package:hanaang_app/utilities/custom_color.dart';
 import 'dart:io';
 
 class BannerCreate extends ConsumerStatefulWidget {
@@ -77,15 +76,15 @@ class _BannerCreateState extends ConsumerState<BannerCreate> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: CustomBgAppBar(),
+        flexibleSpace: const CustomBgAppBar(),
         centerTitle: true,
-        title: TextH2(
+        title: const TextH2(
           text: "Tambah Banner",
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             color: Colors.white,
           ),
@@ -96,18 +95,18 @@ class _BannerCreateState extends ConsumerState<BannerCreate> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           child: Column(
             children: [
               // input image
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Gambar Banner',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Container(
                     width: double.infinity,
                     height: 200,
@@ -154,12 +153,12 @@ class _BannerCreateState extends ConsumerState<BannerCreate> {
                                     });
                                   },
                                   child: Container(
-                                    padding: EdgeInsets.all(4),
+                                    padding: const EdgeInsets.all(4),
                                     decoration: BoxDecoration(
                                       color: Colors.red,
                                       borderRadius: BorderRadius.circular(12),
                                     ),
-                                    child: Icon(
+                                    child: const Icon(
                                       Icons.close,
                                       color: Colors.white,
                                       size: 16,
@@ -184,13 +183,13 @@ class _BannerCreateState extends ConsumerState<BannerCreate> {
                                     size: 50,
                                     color: Colors.grey[600],
                                   ),
-                                  SizedBox(height: 8),
+                                  const SizedBox(height: 8),
                                   TextNormal(
                                     text: "Pilih Gambar",
                                     color: Colors.grey[600]!,
                                     fontWeight: FontWeight.w500,
                                   ),
-                                  SizedBox(height: 4),
+                                  const SizedBox(height: 4),
                                   TextNormal(
                                     text: "JPG, JPEG, PNG (Max 2MB)",
                                     color: Colors.grey[500]!,
@@ -202,16 +201,16 @@ class _BannerCreateState extends ConsumerState<BannerCreate> {
                           ),
                   ),
                   if (_imageError != null) ...[
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                       _imageError!,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.red,
                         fontSize: 12,
                       ),
                     ),
                   ],
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                 ],
               ),
               InputDefault(

@@ -45,13 +45,13 @@ class _CustomHeaderState extends State<CustomHeader> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               widget.title == ""
                   ? Container()
                   : Text(widget.title,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         shadows: [

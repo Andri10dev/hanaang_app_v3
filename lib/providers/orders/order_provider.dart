@@ -14,3 +14,12 @@ final getOrderProvider = FutureProvider<List<OrderModel>>((ref) async {
   final service = ref.watch(preOrderServiceProvider);
   return service.getOrder(token);
 });
+
+final showOrderProvider =
+    FutureProvider.family<OrderModel, String>((ref, orderNumber) async {
+  final prefs = await SharedPreferences.getInstance();
+  final token = prefs.getString('token-hanaang_app') ?? "";
+
+  final service = ref.watch(preOrderServiceProvider);
+  return service.showOrder(token, orderNumber);
+});

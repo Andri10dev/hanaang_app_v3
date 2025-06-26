@@ -8,7 +8,7 @@ class BuildQrCode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: width ?? 250,
       height: width ?? 250,
       child: PrettyQrView.data(

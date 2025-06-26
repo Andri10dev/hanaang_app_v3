@@ -8,7 +8,7 @@ class OpenPreOrderService {
   Future<OpenPreOrderModel> getOpenPreOrder(String token) async {
     final response =
         await http.get(Uri.parse('${BaseUrl.apiUrl}/open-pre-order'), headers: {
-      'Authorization': 'Bearer ${token}',
+      'Authorization': 'Bearer $token',
       'Content-Type': 'application/json',
     });
 
@@ -16,6 +16,8 @@ class OpenPreOrderService {
       final data = jsonDecode(response.body);
       return OpenPreOrderModel.fromJson(data["data"]);
     } else {
+      print("======================");
+      print(response.body);
       final errorData = jsonDecode(response.body);
       throw Exception(errorData['message']);
     }
@@ -26,7 +28,7 @@ class OpenPreOrderService {
     final response =
         await http.post(Uri.parse('${BaseUrl.apiUrl}/open-pre-order'),
             headers: {
-              'Authorization': 'Bearer ${token}',
+              'Authorization': 'Bearer $token',
               'Content-Type': 'application/json',
             },
             body: jsonEncode(body));

@@ -20,15 +20,15 @@ class VerifyEmail extends ConsumerWidget {
     final form = ref.read(formProvider.notifier);
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: CustomBgAppBar(),
+        flexibleSpace: const CustomBgAppBar(),
         centerTitle: true,
-        title: TextH2(
+        title: const TextH2(
           text: "Verify Email",
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             color: Colors.white,
           ),
@@ -52,7 +52,7 @@ class VerifyEmail extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              Align(
+              const Align(
                 alignment: Alignment.centerLeft,
                 child: TextH1(
                   text: "Verifikasi Email",
@@ -60,15 +60,15 @@ class VerifyEmail extends ConsumerWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              TextNormal(
+              const TextNormal(
                 text:
                     "Silahkan masukan kode verifikasi yang baru saja kami kirim ke alamat email Anda..!",
                 textAlign: TextAlign.justify,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               InputDefault(
@@ -80,7 +80,7 @@ class VerifyEmail extends ConsumerWidget {
                 keyboardType: TextInputType.text,
                 onChanged: form.updateEmail,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               ElevatedButton(
@@ -109,21 +109,21 @@ class VerifyEmail extends ConsumerWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              TextNormal(text: "Kode berlaku dalam 03.00"),
+              const TextNormal(text: "Kode berlaku dalam 03.00"),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  TextNormal(
+                  const TextNormal(
                     text: "Tidak mendapatkan kode ?",
                   ),
                   TextButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/login');
                     },
-                    child: TextNormal(
+                    child: const TextNormal(
                       text: "Kirim Ulang",
                       fontWeight: FontWeight.bold,
                       color: myColors.yellow,

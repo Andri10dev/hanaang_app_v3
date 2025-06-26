@@ -23,14 +23,14 @@ void ShowQRCodePreOrder(
             children: [
               const HeaderDialog(title: 'QR Code Pre Order'),
               Padding(
-                padding:
-                    EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 10),
+                padding: const EdgeInsets.only(
+                    left: 10, right: 10, top: 20, bottom: 10),
                 child: BuildQrCode(value: poNumber),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: TextH2(
-                  text: '${user.name}',
+                  text: user.name,
                   fontWeight: FontWeight.bold,
                 ),
               ),

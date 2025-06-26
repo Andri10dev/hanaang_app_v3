@@ -12,15 +12,15 @@ class AgenDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: CustomBgAppBar(),
-        title: TextH2(
+        flexibleSpace: const CustomBgAppBar(),
+        title: const TextH2(
           text: 'Detail Agen',
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             color: Colors.white,
           ),
@@ -35,15 +35,15 @@ class AgenDetail extends StatelessWidget {
               Container(
                 width: 30,
                 height: 30,
-                margin: EdgeInsets.symmetric(horizontal: 4),
-                decoration: BoxDecoration(
+                margin: const EdgeInsets.symmetric(horizontal: 4),
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   shape: BoxShape.circle,
                 ),
                 child: IconButton(
                   padding: EdgeInsets.zero,
                   onPressed: () {},
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.edit,
                     color: Colors.amber,
                     size: 20,
@@ -53,8 +53,8 @@ class AgenDetail extends StatelessWidget {
               Container(
                 width: 30,
                 height: 30,
-                margin: EdgeInsets.only(left: 4, right: 10),
-                decoration: BoxDecoration(
+                margin: const EdgeInsets.only(left: 4, right: 10),
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   shape: BoxShape.circle,
                 ),
@@ -65,7 +65,7 @@ class AgenDetail extends StatelessWidget {
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-                          title: TextH2(
+                          title: const TextH2(
                             text: 'Konfirmasi Hapus',
                             fontWeight: FontWeight.bold,
                             textAlign: TextAlign.center,
@@ -78,8 +78,8 @@ class AgenDetail extends StatelessWidget {
                                 height: 100,
                                 width: 100,
                               ),
-                              SizedBox(height: 16),
-                              TextNormal(
+                              const SizedBox(height: 16),
+                              const TextNormal(
                                 text:
                                     'Apakah Anda yakin ingin menghapus data warung ini?',
                                 textAlign: TextAlign.center,
@@ -99,7 +99,7 @@ class AgenDetail extends StatelessWidget {
                                 onPressed: () {
                                   Navigator.of(context).pop(); // Menutup dialog
                                 },
-                                child: TextNormal(
+                                child: const TextNormal(
                                   text: 'Batal',
                                   color: Colors.red,
                                 ),
@@ -116,7 +116,7 @@ class AgenDetail extends StatelessWidget {
                                   // Tambahkan logika hapus data di sini
                                   Navigator.of(context).pop(); // Menutup dialog
                                 },
-                                child: TextNormal(
+                                child: const TextNormal(
                                   text: 'Hapus',
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
@@ -128,7 +128,7 @@ class AgenDetail extends StatelessWidget {
                       },
                     );
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.delete,
                     color: Colors.red,
                     size: 20,
@@ -141,7 +141,7 @@ class AgenDetail extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           child: Column(
             children: [
               Row(
@@ -158,14 +158,14 @@ class AgenDetail extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: 10),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                        margin: const EdgeInsets.only(top: 10),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 5),
                         width: 100,
                         decoration: BoxDecoration(
                             color: myColors.yellow,
                             borderRadius: BorderRadius.circular(10)),
-                        child: TextNormal(
+                        child: const TextNormal(
                           text: "Agen",
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -174,8 +174,8 @@ class AgenDetail extends StatelessWidget {
                       )
                     ],
                   ),
-                  SizedBox(width: 10),
-                  Column(
+                  const SizedBox(width: 10),
+                  const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TextH1(
@@ -189,7 +189,7 @@ class AgenDetail extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Align(

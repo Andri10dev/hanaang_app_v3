@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -5,23 +6,25 @@ import 'package:hanaang_app/components/custom_header.dart';
 import 'package:hanaang_app/components/customs/bg_appbar.dart';
 import 'package:hanaang_app/components/texts/h1.dart';
 import 'package:hanaang_app/components/texts/h2.dart';
-import 'package:hanaang_app/components/texts/normal.dart';
+import 'package:hanaang_app/components/texts/h3.dart';
+import 'package:hanaang_app/features/orders/antrian/index.dart';
 import 'package:hanaang_app/features/orders/order/index.dart';
-import 'package:hanaang_app/features/orders/order_retur/index.dart';
 import 'package:hanaang_app/features/orders/pre_order/index.dart';
+import 'package:hanaang_app/features/orders/retur_order/index.dart';
+import 'package:hanaang_app/providers/orders/pre_order/nav_pre_order_provider.dart';
 import 'package:hanaang_app/utilities/next_to.dart';
 import 'package:mrx_charts/mrx_charts.dart';
 
-class OrderMenu extends StatelessWidget {
+class OrderMenu extends ConsumerWidget {
   const OrderMenu({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: CustomBgAppBar(),
+        flexibleSpace: const CustomBgAppBar(),
         centerTitle: true,
-        title: TextH1(
+        title: const TextH1(
           text: "Menu Pesanan",
           fontWeight: FontWeight.bold,
           color: Colors.white,
@@ -31,13 +34,13 @@ class OrderMenu extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CustomHeader(),
+            const CustomHeader(),
             Container(
               height: 300,
               padding: const EdgeInsets.all(16),
               child: Chart(layers: [
                 ChartAxisLayer(
-                  settings: ChartAxisSettings(
+                  settings: const ChartAxisSettings(
                     x: ChartAxisSettingsAxis(
                       frequency: 1.0,
                       max: 12,
@@ -67,7 +70,7 @@ class OrderMenu extends StatelessWidget {
                             value: Random().nextInt(500) + 20,
                             x: index.toDouble() + 1,
                           )),
-                  settings: ChartLineSettings(
+                  settings: const ChartLineSettings(
                     color: Colors.blue,
                     thickness: 2,
                   ),
@@ -79,7 +82,7 @@ class OrderMenu extends StatelessWidget {
                             value: Random().nextInt(500) + 20,
                             x: index.toDouble() + 1,
                           )),
-                  settings: ChartLineSettings(
+                  settings: const ChartLineSettings(
                     color: Colors.green,
                     thickness: 2,
                   ),
@@ -91,7 +94,7 @@ class OrderMenu extends StatelessWidget {
                             value: Random().nextInt(500) + 20,
                             x: index.toDouble() + 1,
                           )),
-                  settings: ChartLineSettings(
+                  settings: const ChartLineSettings(
                     color: Colors.yellow,
                     thickness: 2,
                   ),
@@ -101,22 +104,27 @@ class OrderMenu extends StatelessWidget {
             SizedBox(
               height: 300,
               child: GridView.builder(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   mainAxisSpacing: 16,
                   crossAxisSpacing: 16,
                   childAspectRatio: 2,
                 ),
-                padding: EdgeInsets.all(15),
-                itemCount: 3,
+                padding: const EdgeInsets.all(15),
+                itemCount: 4,
                 itemBuilder: (context, index) {
                   final List<Map<String, dynamic>> stats = [
                     {
                       'color': Colors.blue[100]!,
                       'value': '100 Cup',
                       'label': 'Pre Order',
+                    },
+                    {
+                      'color': Colors.red[100]!,
+                      'value': '100',
+                      'label': 'Antrian PO',
                     },
                     {
                       'color': Colors.green[100]!,
@@ -137,13 +145,18 @@ class OrderMenu extends StatelessWidget {
                     onTap: () {
                       switch (index) {
                         case 0:
+                          ref.read(navPreOrderProvider.notifier).setIndex(0);
+                          ref.read(statusPoProvider.notifier).state = 'semua';
                           Next.to(context, PreOrder());
                           break;
                         case 1:
-                          Next.to(context, Order());
+                          Next.to(context, const Antrian());
                           break;
                         case 2:
-                          Next.to(context, OrderRetur());
+                          Next.to(context, const Order());
+                          break;
+                        case 3:
+                          Next.to(context, const ReturOrder());
                           break;
                       }
                     },
@@ -179,10 +192,10 @@ class OrderMenu extends StatelessWidget {
             text: value,
             fontWeight: FontWeight.bold,
           ),
-          SizedBox(height: 5),
-          TextNormal(
+          const SizedBox(height: 5),
+          TextH3(
             text: label,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.bold,
           ),
         ],
       ),

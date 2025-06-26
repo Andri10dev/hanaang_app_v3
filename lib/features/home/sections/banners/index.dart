@@ -5,6 +5,7 @@ import 'package:hanaang_app/components/customs/btn_default.dart';
 import 'package:hanaang_app/components/texts/h1.dart';
 import 'package:hanaang_app/features/home/sections/banners/create.dart';
 import 'package:hanaang_app/features/home/sections/banners/detail.dart';
+import 'package:hanaang_app/providers/auths/local_storage_provider.dart';
 import 'package:hanaang_app/providers/general/banner_provider.dart';
 import 'package:hanaang_app/utilities/base_url.dart';
 import 'package:hanaang_app/utilities/custom_color.dart';
@@ -17,18 +18,19 @@ class BannerSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final bannersAsync = ref.watch(getBanner);
+    final userRole = ref.watch(getUserRoleProvider);
 
     return bannersAsync.when(
       data: (banners) {
-        if (banners.length == 0) {
+        if (banners.isEmpty) {
           return Container(
             height: 150,
-            margin: EdgeInsets.symmetric(horizontal: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
               color: Colors.grey[300],
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Center(
+            child: const Center(
               child: TextH1(
                 text: 'Tidak ada banner',
                 fontWeight: FontWeight.bold,
@@ -44,18 +46,18 @@ class BannerSection extends ConsumerWidget {
                 height: 150,
                 viewportFraction: 0.8,
                 autoPlay: true,
-                autoPlayInterval: Duration(seconds: 3),
+                autoPlayInterval: const Duration(seconds: 3),
               ),
               items: banners.map((banner) {
                 return Builder(
                   builder: (BuildContext context) {
                     return InkWell(
                       onTap: () {
-                        BannerDetail(context, banner, userRole);
+                        BannerDetail(context, banner, userRole.toString());
                       },
                       child: Container(
                         width: MediaQuery.of(context).size.width,
-                        margin: EdgeInsets.symmetric(horizontal: 10),
+                        margin: const EdgeInsets.symmetric(horizontal: 10),
                         decoration: BoxDecoration(
                           color: Colors.amber,
                           borderRadius: BorderRadius.circular(10),
@@ -67,7 +69,7 @@ class BannerSection extends ConsumerWidget {
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(10),
                                 child: Image.network(
-                                  BaseUrl.baseUrl + "/storage/" + banner.image,
+                                  "${BaseUrl.baseUrl}/storage/${banner.image}",
                                   width: double.infinity,
                                   height: double.infinity,
                                   fit: BoxFit.cover,
@@ -108,7 +110,7 @@ class BannerSection extends ConsumerWidget {
                                   if (banner.description.isNotEmpty)
                                     Text(
                                       banner.description,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.white,
                                         fontSize: 12,
                                       ),
@@ -126,36 +128,37 @@ class BannerSection extends ConsumerWidget {
                 );
               }).toList(),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: BtnDefault(
-                name: "Tambah Banner",
-                onTap: () {
-                  Next.to(context, BannerCreate());
-                },
-                color: myColors.yellow,
-              ),
-            )
+            if (userRole.toString() == "super admin")
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: BtnDefault(
+                  name: "Tambah Banner",
+                  onTap: () {
+                    Next.to(context, const BannerCreate());
+                  },
+                  color: myColors.yellow,
+                ),
+              )
           ],
         );
       },
       loading: () => Container(
         height: 150,
-        margin: EdgeInsets.symmetric(horizontal: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
           color: Colors.grey[300],
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Center(
+        child: const Center(
           child: CircularProgressIndicator(),
         ),
       ),
       error: (error, stackTrace) => Container(
         height: 150,
-        margin: EdgeInsets.symmetric(horizontal: 10),
+        margin: const EdgeInsets.symmetric(horizontal: 10),
         decoration: BoxDecoration(
           color: Colors.red[100],
           borderRadius: BorderRadius.circular(10),

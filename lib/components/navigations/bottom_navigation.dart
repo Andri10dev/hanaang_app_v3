@@ -4,6 +4,7 @@ import 'package:hanaang_app/features/account/index.dart';
 import 'package:hanaang_app/features/home/index.dart';
 import 'package:hanaang_app/features/orders/index.dart';
 import 'package:hanaang_app/features/sales/index.dart';
+import 'package:hanaang_app/utilities/custom_color.dart';
 
 class BottomNavBar extends ConsumerWidget {
   const BottomNavBar({super.key});
@@ -12,19 +13,22 @@ class BottomNavBar extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedIndex = ref.watch(navigationProvider);
     final screenPages = [
-      Home(),
-      OrderMenu(),
-      SalesMenu(),
-      Account(),
+      const Home(),
+      const OrderMenu(),
+      const SalesMenu(),
+      const Account(),
     ];
 
     return Scaffold(
       body: screenPages[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: myColors.yellow,
         type: BottomNavigationBarType.fixed,
         currentIndex: selectedIndex,
-        selectedItemColor: Theme.of(context).primaryColor,
-        unselectedItemColor: Colors.grey,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey[800],
+        selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
+        unselectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
         onTap: (index) => ref.read(navigationProvider.notifier).setIndex(index),
         items: const [
           BottomNavigationBarItem(

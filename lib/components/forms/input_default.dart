@@ -57,14 +57,14 @@ class InputDefault extends ConsumerWidget {
                 : null,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 width: 2,
                 color: Colors.grey,
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 width: 2,
                 color: myColors.yellow,
               ),

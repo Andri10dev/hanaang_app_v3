@@ -5,6 +5,8 @@ import 'package:hanaang_app/components/customs/bg_appbar.dart';
 import 'package:hanaang_app/components/texts/h2.dart';
 import 'package:hanaang_app/components/texts/h3.dart';
 import 'package:hanaang_app/components/texts/normal.dart';
+import 'package:hanaang_app/features/sales/store/detail.dart';
+import 'package:hanaang_app/utilities/next_to.dart';
 
 class Store extends StatefulWidget {
   const Store({super.key});
@@ -27,17 +29,17 @@ class _StoreState extends State<Store> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: CustomBgAppBar(),
+        flexibleSpace: const CustomBgAppBar(),
         title: _isSearchVisible
             ? TextField(
                 controller: _searchController,
-                style: TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                   hintText: 'Cari warung...',
-                  hintStyle: TextStyle(color: Colors.white70),
+                  hintStyle: const TextStyle(color: Colors.white70),
                   border: InputBorder.none,
                   suffixIcon: IconButton(
-                    icon: Icon(Icons.clear, color: Colors.white),
+                    icon: const Icon(Icons.clear, color: Colors.white),
                     onPressed: () {
                       setState(() {
                         _searchController.clear();
@@ -50,14 +52,14 @@ class _StoreState extends State<Store> {
                   setState(() {});
                 },
               )
-            : TextH2(
+            : const TextH2(
                 text: 'Warung',
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
         centerTitle: true,
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             color: Colors.white,
           ),
@@ -86,7 +88,7 @@ class _StoreState extends State<Store> {
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Column(
-            children: List.generate(100, (index) {
+            children: List.generate(20, (index) {
               // Generate data random
               final random = Random();
               final namaWarung = "Warung ${random.nextInt(1000)}";
@@ -97,8 +99,7 @@ class _StoreState extends State<Store> {
                 padding: const EdgeInsets.only(bottom: 10),
                 child: InkWell(
                   onTap: () {
-                    // Tambahkan aksi ketika card ditekan
-                    print('Warung $namaWarung dipilih');
+                    Next.to(context, const StoreDetail());
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -108,7 +109,7 @@ class _StoreState extends State<Store> {
                           color: Colors.black.withOpacity(0.2),
                           blurRadius: 4,
                           spreadRadius: 0.1,
-                          offset: Offset(0, 2),
+                          offset: const Offset(0, 2),
                         ),
                       ],
                       color: Colors.white,
@@ -126,7 +127,7 @@ class _StoreState extends State<Store> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                          SizedBox(width: 10),
+                          const SizedBox(width: 10),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -145,7 +146,7 @@ class _StoreState extends State<Store> {
                           ),
                           PopupMenuButton<String>(
                             color: Colors.white,
-                            icon: Icon(Icons.more_vert,
+                            icon: const Icon(Icons.more_vert,
                                 color: Colors.black, size: 35),
                             onSelected: (String value) {
                               if (value == 'edit') {
@@ -157,7 +158,7 @@ class _StoreState extends State<Store> {
                               }
                             },
                             itemBuilder: (BuildContext context) => [
-                              PopupMenuItem<String>(
+                              const PopupMenuItem<String>(
                                 value: 'Tandai',
                                 child: Row(
                                   children: [
@@ -167,7 +168,7 @@ class _StoreState extends State<Store> {
                                   ],
                                 ),
                               ),
-                              PopupMenuItem<String>(
+                              const PopupMenuItem<String>(
                                 value: 'edit',
                                 child: Row(
                                   children: [
@@ -177,7 +178,7 @@ class _StoreState extends State<Store> {
                                   ],
                                 ),
                               ),
-                              PopupMenuItem<String>(
+                              const PopupMenuItem<String>(
                                 value: 'delete',
                                 child: Row(
                                   children: [

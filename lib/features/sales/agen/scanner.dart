@@ -5,7 +5,7 @@ import 'package:hanaang_app/components/customs/btn_default.dart';
 import 'package:hanaang_app/components/texts/h2.dart';
 import 'package:hanaang_app/components/texts/normal.dart';
 import 'package:hanaang_app/features/orders/pre_order/detail/index.dart';
-import 'package:hanaang_app/providers/orders/pre_order_provider.dart';
+import 'package:hanaang_app/providers/orders/pre_order/pre_order_provider.dart';
 import 'package:hanaang_app/utilities/next_to.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
@@ -65,8 +65,8 @@ class _ScanerQrCodeAgenState extends ConsumerState<ScanerQrCodeAgen> {
       final showPreOrder =
           ref.watch(showPreOrderProvider(barcode.displayValue!));
       if (showPreOrder.hasValue) {
-        Next.to(context, PreOrderDetail(poNumber: barcode.displayValue ?? ''));
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        // Next.to(context, PreOrderDetail(poNumber: barcode.displayValue ?? ''));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             backgroundColor: Colors.green,
             content: TextNormal(
               text: 'Data ditemukan..!',
@@ -75,7 +75,7 @@ class _ScanerQrCodeAgenState extends ConsumerState<ScanerQrCodeAgen> {
             )));
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
               backgroundColor: Colors.red,
               content: TextNormal(
                 text: 'Qr Code tidak valid..!',
@@ -98,15 +98,15 @@ class _ScanerQrCodeAgenState extends ConsumerState<ScanerQrCodeAgen> {
 
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: CustomBgAppBar(),
+        flexibleSpace: const CustomBgAppBar(),
         centerTitle: true,
-        title: TextH2(
+        title: const TextH2(
           text: "Scan Qr Code Pre Order",
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             color: Colors.white,
           ),
@@ -117,7 +117,7 @@ class _ScanerQrCodeAgenState extends ConsumerState<ScanerQrCodeAgen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           child: Column(
             children: [
               Center(
@@ -132,7 +132,7 @@ class _ScanerQrCodeAgenState extends ConsumerState<ScanerQrCodeAgen> {
                       controller: _controller, onDetect: _onBarcodeDetect),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               BtnDefault(

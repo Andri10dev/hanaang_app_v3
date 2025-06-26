@@ -33,12 +33,12 @@ void BannerDetail(BuildContext context, BannerModel data, String userRole) {
                       icon: Container(
                         width: 35,
                         height: 35,
-                        padding: EdgeInsets.all(0),
+                        padding: const EdgeInsets.all(0),
                         decoration: BoxDecoration(
                           color: Colors.red,
                           borderRadius: BorderRadius.circular(100),
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.close,
                           size: 25,
                           color: Colors.white,
@@ -52,7 +52,7 @@ void BannerDetail(BuildContext context, BannerModel data, String userRole) {
                 aspectRatio: 16 / 9,
                 child: Image.network(
                     fit: BoxFit.cover,
-                    BaseUrl.baseUrl + "/storage/" + data.image),
+                    "${BaseUrl.baseUrl}/storage/${data.image}"),
               ),
               Padding(
                 padding:
@@ -64,15 +64,15 @@ void BannerDetail(BuildContext context, BannerModel data, String userRole) {
                       text: data.title,
                       fontWeight: FontWeight.bold,
                     ),
-                    Divider(
+                    const Divider(
                       height: 10,
                     ),
                     TextNormal(
                       text: data.description,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.w400,
                       textAlign: TextAlign.justify,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     ["super admin", "admin order"].contains(userRole)
@@ -84,7 +84,7 @@ void BannerDetail(BuildContext context, BannerModel data, String userRole) {
                                       name: "Hapus",
                                       color: Colors.red,
                                       onTap: () {})),
-                              SizedBox(
+                              const SizedBox(
                                 width: 10,
                               ),
                               Expanded(
@@ -92,7 +92,7 @@ void BannerDetail(BuildContext context, BannerModel data, String userRole) {
                                       BtnDefault(name: "Update", onTap: () {})),
                             ]),
                           )
-                        : SizedBox(),
+                        : const SizedBox(),
                   ],
                 ),
               ),

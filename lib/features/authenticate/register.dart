@@ -24,14 +24,14 @@ class Register extends ConsumerWidget {
         body: SingleChildScrollView(
       child: Column(
         children: [
-          CustomHeader(
+          const CustomHeader(
             title: "Register Hanaang App",
           ),
           Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
               child: Column(
                 children: [
-                  TextH2(
+                  const TextH2(
                     text: "Teh Tarik Hanaang",
                     fontWeight: FontWeight.bold,
                   ),
@@ -81,7 +81,7 @@ class Register extends ConsumerWidget {
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
-                      child: TextNormal(
+                      child: const TextNormal(
                         text: "Setuju dengan syarat & ketentuan",
                         fontWeight: FontWeight.bold,
                         color: myColors.yellow,
@@ -122,20 +122,20 @@ class Register extends ConsumerWidget {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      TextNormal(
+                      const TextNormal(
                         text: "Sudah punya akun ?",
                       ),
                       TextButton(
                         onPressed: () {
-                          Next.to(context, Login());
+                          Next.to(context, const Login());
                         },
-                        child: TextNormal(
+                        child: const TextNormal(
                           text: "Masuk disini",
                           fontWeight: FontWeight.bold,
                           color: myColors.yellow,
@@ -143,7 +143,7 @@ class Register extends ConsumerWidget {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Image.asset(

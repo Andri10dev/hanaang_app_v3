@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hanaang_app/utilities/min_width.dart';
 
 class TextH1 extends StatelessWidget {
   final String text;
@@ -16,15 +15,17 @@ class TextH1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    double getResponsiveFontSize(double screenWidth) {
+      if (screenWidth >= 412) return 22; // tablet
+      if (screenWidth >= 390) return 20; // tablet
+      if (screenWidth >= 360) return 18; // besar
+      if (screenWidth >= 320) return 16; // sedang
+      return 10; // kecil
+    }
+
     return Text(text,
         style: TextStyle(
-            fontSize: screenWidth >= MinWidth.xs
-                ? 18
-                : screenWidth >= MinWidth.sm
-                    ? 20
-                    : screenWidth >= MinWidth.md
-                        ? 22
-                        : 16,
+            fontSize: getResponsiveFontSize(screenWidth),
             color: color,
             fontWeight: fontWeight),
         textAlign: textAlign);

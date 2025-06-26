@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -11,17 +12,44 @@ import 'package:hanaang_app/features/sales/sale.dart';
 import 'package:hanaang_app/features/sales/store/index.dart';
 import 'package:hanaang_app/utilities/next_to.dart';
 import 'package:mrx_charts/mrx_charts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class SalesMenu extends StatelessWidget {
+class SalesMenu extends ConsumerStatefulWidget {
   const SalesMenu({super.key});
+
+  @override
+  ConsumerState<SalesMenu> createState() => _SalesMenuState();
+}
+
+class _SalesMenuState extends ConsumerState<SalesMenu> {
+  String userRole = "";
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserRole();
+  }
+
+  _loadUserRole() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      userRole = prefs.getString('user_role-hanaang_app') ?? "";
+    });
+  }
+
+  bool _canAccessAgen() {
+    return userRole == "super admin" ||
+        userRole == "admin order" ||
+        userRole == "distributor";
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: CustomBgAppBar(),
+        flexibleSpace: const CustomBgAppBar(),
         centerTitle: true,
-        title: TextH1(
+        title: const TextH1(
           text: "Menu Penjualan",
           fontWeight: FontWeight.bold,
           color: Colors.white,
@@ -31,13 +59,13 @@ class SalesMenu extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CustomHeader(),
+            const CustomHeader(),
             Container(
               height: 300,
               padding: const EdgeInsets.all(16),
               child: Chart(layers: [
                 ChartAxisLayer(
-                  settings: ChartAxisSettings(
+                  settings: const ChartAxisSettings(
                     x: ChartAxisSettingsAxis(
                       frequency: 1.0,
                       max: 12,
@@ -67,7 +95,7 @@ class SalesMenu extends StatelessWidget {
                             value: Random().nextInt(500) + 20,
                             x: index.toDouble() + 1,
                           )),
-                  settings: ChartLineSettings(
+                  settings: const ChartLineSettings(
                     color: Colors.blue,
                     thickness: 2,
                   ),
@@ -79,7 +107,7 @@ class SalesMenu extends StatelessWidget {
                             value: Random().nextInt(500) + 20,
                             x: index.toDouble() + 1,
                           )),
-                  settings: ChartLineSettings(
+                  settings: const ChartLineSettings(
                     color: Colors.green,
                     thickness: 2,
                   ),
@@ -91,7 +119,7 @@ class SalesMenu extends StatelessWidget {
                             value: Random().nextInt(500) + 20,
                             x: index.toDouble() + 1,
                           )),
-                  settings: ChartLineSettings(
+                  settings: const ChartLineSettings(
                     color: Colors.yellow,
                     thickness: 2,
                   ),
@@ -101,16 +129,16 @@ class SalesMenu extends StatelessWidget {
             SizedBox(
               height: 300,
               child: GridView.builder(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   mainAxisSpacing: 16,
                   crossAxisSpacing: 16,
                   childAspectRatio: 2,
                 ),
-                padding: EdgeInsets.all(15),
-                itemCount: 3,
+                padding: const EdgeInsets.all(15),
+                itemCount: _canAccessAgen() ? 3 : 2,
                 itemBuilder: (context, index) {
                   final List<Map<String, dynamic>> stats = [
                     {
@@ -123,11 +151,12 @@ class SalesMenu extends StatelessWidget {
                       'value': '100',
                       'label': 'Warung',
                     },
-                    {
-                      'color': Colors.orange[100]!,
-                      'value': '100',
-                      'label': 'Agen',
-                    },
+                    if (_canAccessAgen())
+                      {
+                        'color': Colors.orange[100]!,
+                        'value': '100',
+                        'label': 'Agen',
+                      },
                   ];
 
                   return _buildStatButton(
@@ -137,13 +166,15 @@ class SalesMenu extends StatelessWidget {
                     onTap: () {
                       switch (index) {
                         case 0:
-                          Next.to(context, SalesPage());
+                          Next.to(context, const SalesPage());
                           break;
                         case 1:
-                          Next.to(context, Store());
+                          Next.to(context, const Store());
                           break;
                         case 2:
-                          Next.to(context, Agen());
+                          if (_canAccessAgen()) {
+                            Next.to(context, const Agen());
+                          }
                           break;
                       }
                     },
@@ -179,7 +210,7 @@ class SalesMenu extends StatelessWidget {
             text: value,
             fontWeight: FontWeight.bold,
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           TextNormal(
             text: label,
             fontWeight: FontWeight.w500,

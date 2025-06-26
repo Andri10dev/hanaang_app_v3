@@ -11,10 +11,10 @@ class BankMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(56.0), // Tinggi AppBar
+          preferredSize: const Size.fromHeight(56.0), // Tinggi AppBar
           child: AppBar(
             flexibleSpace: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
                     myColors.orange,
@@ -26,7 +26,7 @@ class BankMenu extends StatelessWidget {
               ),
             ),
             centerTitle: true,
-            title: TextH2(
+            title: const TextH2(
               text: "Daftar Bank / Kas",
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -129,7 +129,7 @@ class BankMenu extends StatelessWidget {
                                       color: Colors.green,
                                       borderRadius: BorderRadius.circular(10),
                                     ),
-                                    child: TextNormal(
+                                    child: const TextNormal(
                                       text: "Primary",
                                       fontWeight: FontWeight.bold,
                                       color: Colors.white,

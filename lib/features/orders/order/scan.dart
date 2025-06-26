@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hanaang_app/components/customs/bg_appbar.dart';
 import 'package:hanaang_app/components/texts/h2.dart';
-import 'package:hanaang_app/features/orders/order/detail.dart';
+import 'package:hanaang_app/features/orders/order/detail/index.dart';
 import 'package:hanaang_app/features/sales/agen/invite_agen.dart';
 import 'package:hanaang_app/utilities/next_to.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
@@ -44,15 +44,15 @@ class _OrderScanerState extends State<OrderScaner> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: CustomBgAppBar(),
+        flexibleSpace: const CustomBgAppBar(),
         centerTitle: true,
-        title: TextH2(
+        title: const TextH2(
           text: "Cari Order",
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             color: Colors.white,
           ),
@@ -100,7 +100,7 @@ class _OrderScanerState extends State<OrderScaner> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'Arahkan kamera ke QR Code',
                   style: TextStyle(
                     fontSize: 16,
@@ -109,12 +109,12 @@ class _OrderScanerState extends State<OrderScaner> {
                 ),
                 Text(
                   'Raw Value: ${_barcodeRaw?.displayValue}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 ElevatedButton.icon(
                   onPressed: () {
                     setState(() {
@@ -123,10 +123,10 @@ class _OrderScanerState extends State<OrderScaner> {
                     });
                     _controller.start();
                   },
-                  icon: Icon(Icons.refresh),
-                  label: Text('Scan Ulang'),
+                  icon: const Icon(Icons.refresh),
+                  label: const Text('Scan Ulang'),
                   style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                       horizontal: 24,
                       vertical: 12,
                     ),

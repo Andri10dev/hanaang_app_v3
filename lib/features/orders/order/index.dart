@@ -15,15 +15,15 @@ class Order extends ConsumerWidget {
     final getData = ref.watch(getOrderProvider);
     return Scaffold(
         appBar: AppBar(
-          flexibleSpace: CustomBgAppBar(),
+          flexibleSpace: const CustomBgAppBar(),
           centerTitle: true,
-          title: TextH2(
+          title: const TextH2(
             text: "Data Pesanan",
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
           leading: IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_back_ios,
               color: Colors.white,
             ),
@@ -33,16 +33,16 @@ class Order extends ConsumerWidget {
           ),
           actions: [
             IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.qr_code_scanner,
                 color: Colors.white,
               ),
               onPressed: () {
-                Next.to(context, OrderScaner());
+                Next.to(context, const OrderScaner());
               },
             ),
             IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.search,
                 color: Colors.white,
               ),
@@ -68,14 +68,17 @@ class Order extends ConsumerWidget {
                                 OrderCard(
                                   data: data[index],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 15,
                                 )
                               ],
                             )),
                   ),
-              loading: () => Center(child: CircularProgressIndicator()),
-              error: (err, _) => Center(child: Text('Error: $err'))),
+              loading: () => const Center(child: CircularProgressIndicator()),
+              error: (err, _) => SingleChildScrollView(
+                  child: Center(
+                      child:
+                          Text('Silahkan Periksa koneksi internet Anda..!')))),
         ));
   }
 }

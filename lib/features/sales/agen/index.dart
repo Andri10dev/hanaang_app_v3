@@ -14,15 +14,15 @@ class Agen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        flexibleSpace: CustomBgAppBar(),
+        flexibleSpace: const CustomBgAppBar(),
         centerTitle: true,
-        title: TextH2(
+        title: const TextH2(
           text: "Data Agen",
           fontWeight: FontWeight.bold,
           color: Colors.white,
         ),
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios,
             color: Colors.white,
           ),
@@ -32,16 +32,16 @@ class Agen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.qr_code_scanner,
               color: Colors.white,
             ),
             onPressed: () {
-              Next.to(context, ScanerQrCodeAgen());
+              Next.to(context, const ScanerQrCodeAgen());
             },
           ),
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.search,
               color: Colors.white,
             ),
@@ -58,11 +58,11 @@ class Agen extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
-                  Next.to(context, AgenDetail());
+                  Next.to(context, const AgenDetail());
                 },
                 borderRadius: BorderRadius.circular(10),
                 child: Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   width: double.infinity,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -72,7 +72,7 @@ class Agen extends StatelessWidget {
                           color: Colors.black.withOpacity(0.2),
                           blurRadius: 4,
                           spreadRadius: 0.1,
-                          offset: Offset(0, 1),
+                          offset: const Offset(0, 1),
                         ),
                       ]),
                   child: Row(
@@ -87,8 +87,8 @@ class Agen extends StatelessWidget {
                                 color: Colors.red,
                                 borderRadius: BorderRadius.circular(1000)),
                           ),
-                          SizedBox(width: 10),
-                          Column(
+                          const SizedBox(width: 10),
+                          const Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               TextH3(
@@ -109,7 +109,7 @@ class Agen extends StatelessWidget {
                       ),
                       IconButton(
                         onPressed: () {},
-                        icon: Icon(Icons.more_vert,
+                        icon: const Icon(Icons.more_vert,
                             color: Colors.black, size: 35),
                       )
                     ],

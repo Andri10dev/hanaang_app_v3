@@ -22,14 +22,14 @@ void ShowQRCodeAccount(
             children: [
               const HeaderDialog(title: 'QR Code Akun'),
               Padding(
-                padding:
-                    EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 10),
+                padding: const EdgeInsets.only(
+                    left: 10, right: 10, top: 20, bottom: 10),
                 child: BuildQrCode(value: id),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: TextH2(
-                  text: '${name}',
+                  text: name,
                   fontWeight: FontWeight.bold,
                 ),
               ),
